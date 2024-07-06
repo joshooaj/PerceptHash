@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'PerceptHash.psm1'
+RootModule = 'bin/PerceptHashLib.dll'
 
 # Version number of this module.
 ModuleVersion = '0.1.0'
@@ -21,16 +21,16 @@ ModuleVersion = '0.1.0'
 GUID = 'fb71747d-9d5e-47b1-be14-1c440a63ce37'
 
 # Author of this module
-Author = 'Josh Hendricks'
+Author = 'joshooaj'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'joshooaj'
 
 # Copyright statement for this module
-Copyright = '(c) 2024 Josh Hendricks. All rights reserved.'
+Copyright = '(c) 2024 Joshua Hendricks. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Find similar images using perceptual hashes.'
+Description = 'Compare images using perceptual hashes.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''

@@ -4,3 +4,7 @@ Output/
 scratch/
 
 testResults.xml
+
+[Bb]in/
+[Oo]bj/
+.vs/
