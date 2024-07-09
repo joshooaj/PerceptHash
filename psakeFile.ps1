@@ -15,7 +15,7 @@ properties {
 
 task Default -depends Compile, UpdateVersion, StageLibrary, Test
 
-task Test -FromModule PowerShellBuild -minimumVersion '0.6.1'
+task Test -FromModule joshooaj.PowerShellBuild -minimumVersion '0.6.2'
 
 task DotnetToolRestore {
     Exec {
@@ -23,12 +23,23 @@ task DotnetToolRestore {
     }
 }
 
-task Compile -depends DotnetToolRestore {
+task DotnetClean {
+    if (Test-Path $PSBPreference.Build.OutDir) {
+        Remove-Item $PSBPreference.Build.OutDir -Recurse -Force
+    }
+
+    $projectBinFolder = Join-Path $PSBPreference.General.ModuleName bin
+    if (Test-Path $projectBinFolder) {
+        Remove-Item $projectBinFolder -Recurse -Force
+    }
+}
+
+task Compile -depends DotnetToolRestore, DotnetClean {
     foreach ($project in Get-ChildItem -Path (Join-Path $psake.build_script_dir '\src\*.csproj') -Recurse) {
         Exec {
             $outputPath = Join-Path $PSBPreference.Build.OutDir "/lib/$($project.BaseName)"
-            dotnet restore "`"$($project.FullName)`""
-            dotnet build "`"$($project.FullName)`"" -o "`"$outputPath`""
+            dotnet restore $project.FullName
+            dotnet build $project.FullName -o $outputPath
         }
     }
 }
@@ -40,7 +51,7 @@ task UpdateVersion {
 task StageLibrary {
     $sdkSrc = Join-Path $PSBPreference.Build.OutDir '\lib\PerceptHashLib'
     $sdkDst = Join-Path $PSBPreference.General.SrcRootDir 'bin'
-    $null = New-Item -Path $sdkDst -ItemType Directory -Force -Verbose
+    $null = New-Item -Path $sdkDst -ItemType Directory -Force
 
     Get-ChildItem -Path $sdkSrc | Copy-Item -Destination $sdkDst -Recurse
 }

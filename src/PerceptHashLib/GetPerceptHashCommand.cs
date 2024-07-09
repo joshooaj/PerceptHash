@@ -67,7 +67,9 @@ namespace PerceptHashLib
             switch (Algorithm)
             {
                 case PerceptHashAlgorithm.dhash:
-                    WriteObject(new PerceptHash(Algorithm, DHashAlgorithm.CalculateHash(stream), filePath));
+                    var hash = DHashAlgorithm.CalculateHash(stream);
+                    var perceptHash = new PerceptHash(Algorithm, hash, filePath);
+                    WriteObject(perceptHash);
                     break;
 
                 default:

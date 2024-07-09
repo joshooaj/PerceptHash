@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-PerceptHash
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets a perceptual hash of the provided image(s).
 
 ## SYNTAX
 
@@ -28,21 +28,45 @@ Get-PerceptHash [-InputStream] <Stream> [-Algorithm <PerceptHashAlgorithm>] [<Co
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-PerceptHash` cmdlet gets a perceptual hash of the provided image(s). In the current
+version only the dHash algorithm is available. Future versions may include additional algorithms.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-PerceptHash -Path ./image.jpg
 ```
 
-{{ Add example description here }}
+Gets the perceptual hash for `image.jpg` in the current directory using the dHash algorithm.
+
+### Example 2
+```powershell
+Get-PerceptHash -LiteralPath 'image[2].jpg'
+```
+
+Gets the perceptual hash for `image[2].jpg` in the current directory using the dHash algorithm.
+The square brackets in the file name require the use of the `LiteralPath` parameter instead of the
+default `Path` parameter.
+
+### Example 3
+```powershell
+$memoryStream = [io.memorystream]::new()
+$bytes = [io.file]::ReadAllBytes('image.jpg')
+$memoryStream.Write($bytes, 0, $bytes.Length)
+$memoryStream.Position = 0
+
+Get-PerceptHash -InputStream $memoryStream
+```
+
+In many cases there may not be a file on disk and the image is in a stream object. In that case you
+can use the `InputStream` parameter to generate a perceptual hash. The use of `IO.MemoryStream`
+here is only for demonstration purposes.
 
 ## PARAMETERS
 
 ### -Algorithm
-{{ Fill Algorithm Description }}
+Specifies the perceptual hash algorithm to use. At present, only dHash is supported.
 
 ```yaml
 Type: PerceptHashAlgorithm
@@ -58,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -InputStream
-{{ Fill InputStream Description }}
+Specifies a memory, file, or other stream object representing an image from disk or some other source.
 
 ```yaml
 Type: Stream
@@ -73,7 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -LiteralPath
-{{ Fill LiteralPath Description }}
+Specifies the exact file path for the image, or images to be hashed.
 
 ```yaml
 Type: String[]
@@ -88,7 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -Path
-{{ Fill Path Description }}
+Specifies the path to one or more images to be hashed.
 
 ```yaml
 Type: String[]

@@ -7,7 +7,7 @@ BeforeDiscovery {
         $commonParams = @(
             'Debug', 'ErrorAction', 'ErrorVariable', 'InformationAction', 'InformationVariable',
             'OutBuffer', 'OutVariable', 'PipelineVariable', 'Verbose', 'WarningAction',
-            'WarningVariable', 'Confirm', 'Whatif'
+            'WarningVariable', 'Confirm', 'Whatif', 'ProgressAction'
         )
         $params | Where-Object { $_.Name -notin $commonParams } | Sort-Object -Property Name -Unique
     }
@@ -16,7 +16,7 @@ BeforeDiscovery {
     $outputDir            = Join-Path -Path $env:BHProjectPath -ChildPath 'Output'
     $outputModDir         = Join-Path -Path $outputDir -ChildPath $env:BHProjectName
     $outputModVerDir      = Join-Path -Path $outputModDir -ChildPath $manifest.ModuleVersion
-    $outputModVerManifest = Join-Path -Path $outputModVerDir -ChildPath "$($env:BHProjectName).psd1"
+    $outputModVerManifest = Join-Path -Path $env:BHBuildOutput -ChildPath "$($env:BHProjectName).psd1"
 
     # Get module commands
     # Remove all versions of the module from the session. Pester can't handle multiple versions.

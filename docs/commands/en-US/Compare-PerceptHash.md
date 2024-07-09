@@ -8,7 +8,7 @@ schema: 2.0.0
 # Compare-PerceptHash
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Compares the provided perceptual hashes and returns the difference as an integer.
 
 ## SYNTAX
 
@@ -17,21 +17,32 @@ Compare-PerceptHash [[-ReferenceHash] <Object>] [[-DifferenceHash] <Object>] [<C
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Compare-PerceptHash` cmdlet compares the provided perceptual hashes and returns the difference
+as an integer.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+$hash1 = Get-PerceptHash ./image1.jpg
+$hash2 = Get-PerceptHash ./image2.jpg
+
+ComparePerceptHash -ReferenceHash $hash1 -DifferenceHash $hash2
 ```
 
-{{ Add example description here }}
+Compares image1.jpg and image2.jpg returning the difference using the dHash algorithm.
+
+### Example 2
+```powershell
+Get-PerceptHash ./image1.jpg | ComparePerceptHash -DifferenceHash '6964565642464933'
+```
+
+Compares image1.jpg with the plain dHash value `6964565642464933`.
 
 ## PARAMETERS
 
 ### -DifferenceHash
-{{ Fill DifferenceHash Description }}
+Specifies a perceptual hash to compare with the value of `ReferenceHash`.
 
 ```yaml
 Type: Object
@@ -46,7 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReferenceHash
-{{ Fill ReferenceHash Description }}
+Specifies a perceptual hash to be compared with.
 
 ```yaml
 Type: Object

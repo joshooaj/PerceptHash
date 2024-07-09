@@ -17,8 +17,11 @@
     'BuildHelpers' = @{
         Version = '2.0.16'
     }
-    'PowerShellBuild' = @{
+    'joshooaj.PowerShellBuild' = @{
         Version = '0.6.1'
+    }
+    'platyPS' = @{
+        Version = '0.14.2'
     }
     'PSScriptAnalyzer' = @{
         Version = '1.19.1'

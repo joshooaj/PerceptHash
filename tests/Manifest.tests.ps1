@@ -9,7 +9,7 @@ BeforeAll {
     $outputDir          = Join-Path -Path $ENV:BHProjectPath -ChildPath 'Output'
     $outputModDir       = Join-Path -Path $outputDir -ChildPath $env:BHProjectName
     $outputModVerDir    = Join-Path -Path $outputModDir -ChildPath $manifest.ModuleVersion
-    $outputManifestPath = Join-Path -Path $outputModVerDir -Child "$($moduleName).psd1"
+    $outputManifestPath = Join-Path -Path $env:BHBuildOutput -ChildPath "$($env:BHProjectName).psd1"
     $manifestData       = Test-ModuleManifest -Path $outputManifestPath -Verbose:$false -ErrorAction Stop -WarningAction SilentlyContinue
 
     $changelogPath    = Join-Path -Path $env:BHProjectPath -Child 'CHANGELOG.md'
