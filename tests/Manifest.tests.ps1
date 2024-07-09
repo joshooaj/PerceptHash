@@ -59,14 +59,15 @@ Describe 'Module manifest' {
             $manifestData.CopyRight | Should -Not -BeNullOrEmpty
         }
 
-        It 'Has a valid version in the changelog' {
-            $changelogVersion               | Should -Not -BeNullOrEmpty
-            $changelogVersion -as [Version] | Should -Not -BeNullOrEmpty
-        }
+        # Using nbgv to generate versions based on git height. Changelog will be updated manually after publishing.
+        # It 'Has a valid version in the changelog' {
+        #     $changelogVersion               | Should -Not -BeNullOrEmpty
+        #     $changelogVersion -as [Version] | Should -Not -BeNullOrEmpty
+        # }
 
-        It 'Changelog and manifest versions are the same' {
-            $changelogVersion -as [Version] | Should -Be ( $manifestData.Version -as [Version] )
-        }
+        # It 'Changelog and manifest versions are the same' {
+        #     $changelogVersion -as [Version] | Should -Be ( $manifestData.Version -as [Version] )
+        # }
     }
 }
 
@@ -86,7 +87,7 @@ Describe 'Git tagging' -Skip {
         $gitTagVersion -as [Version] | Should -Not -BeNullOrEmpty
     }
 
-    It 'Matches manifest version' {
-        $manifestData.Version -as [Version] | Should -Be ( $gitTagVersion -as [Version])
-    }
+    # It 'Matches manifest version' {
+    #     $manifestData.Version -as [Version] | Should -Be ( $gitTagVersion -as [Version])
+    # }
 }
