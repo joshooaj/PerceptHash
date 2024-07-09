@@ -25,15 +25,18 @@ param(
     # Bootstrap dependencies
     [switch]$Bootstrap,
 
+    # Don't isolate the build script by running it in a job
+    [switch]$SkipIsolation,
+
     # List available build tasks
     [parameter(ParameterSetName = 'Help')]
     [switch]$Help,
 
-    # Optional properties to pass to psake
-    [hashtable]$Properties,
-
-    # Optional parameters to pass to psake
-    [hashtable]$Parameters
+    # Build configuration: Debug or Release
+    [Parameter()]
+    [ValidateSet('Debug', 'Release')]
+    [string]
+    $Configuration = 'Release'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -53,13 +56,20 @@ if ($Bootstrap.IsPresent) {
     }
 }
 
-# Execute psake task(s)
 $psakeFile = './psakeFile.ps1'
 if ($PSCmdlet.ParameterSetName -eq 'Help') {
     Get-PSakeScriptTasks -buildFile $psakeFile |
         Format-Table -Property Name, Description, Alias, DependsOn
-} else {
-    Set-BuildEnvironment -Force
-    Invoke-psake -buildFile $psakeFile -taskList $Task -nologo -properties $Properties -parameters $Parameters
-    exit ([int](-not $psake.build_success))
+    exit
 }
+
+if (-not $SkipIsolation) {
+    Write-Host "Running build in isolation" -ForegroundColor Yellow
+    & (Get-Process -Id $PID).Name -NoLogo -File $PWD/build.ps1 -SkipIsolation -Task ($Task -join ', ') -Configuration $Configuration
+    exit $LASTEXITCODE
+}
+
+# Execute psake task(s)
+Set-BuildEnvironment -Force
+Invoke-psake -buildFile $psakeFile -taskList $Task -nologo -properties @{ Configuration = $Configuration }
+exit ([int](-not $psake.build_success))
