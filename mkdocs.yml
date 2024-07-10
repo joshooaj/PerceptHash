@@ -1,4 +1,83 @@
 site_name: PerceptHash
+site_description: Find similar images based on perceptual hashes
+site_dir: Output/site
 repo_url: https://github.com/joshooaj/PerceptHash
-theme: readthedocs
+remote_branch: gh-pages
 
+theme:
+  name: material
+  logo: assets/images/joshooaj.png
+  favicon: assets/images/favicon.ico
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    repo: material/github
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+plugins:
+  - search
+  - awesome-pages
+  - social:
+      cards_layout_options:
+        color: "#ffffff"
+        background_color: "#4d9bea"
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      linenums_style: pymdownx-inline
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/joshooaj
+      name: joshooaj on Twitter
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/joshooaj
+      name: joshooaj on LinkedIn
+    - icon: fontawesome/brands/github
+      link: https://github.com/joshooaj
+      name: joshooaj on GitHub
+
+nav:
+  - Home: README.md
+  - Commands:
+    - ... | flat | commands/en-US/*.md

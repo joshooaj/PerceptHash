@@ -1,7 +1,7 @@
 ---
 external help file: PerceptHashLib.dll-Help.xml
 Module Name: PerceptHash
-online version:
+online version: https://joshooaj.com/PerceptHash/commands/en-US/Compare-PerceptHash/
 schema: 2.0.0
 ---
 
