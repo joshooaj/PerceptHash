@@ -59,3 +59,9 @@ task StageLibrary -depends Compile, UpdateVersion {
 
     Get-ChildItem -Path $sdkSrc | Copy-Item -Destination $sdkDst -Recurse
 }
+
+task PublishDocs -depends Default {
+    exec {
+        docker run -v "$($psake.build_script_dir)`:/docs" -e 'CI=true' --entrypoint 'sh' squidfunk/mkdocs-material:9 -c 'pip install -r requirements.txt && mkdocs gh-deploy --force'
+    }
+}
