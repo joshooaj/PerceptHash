@@ -11,9 +11,11 @@ namespace PerceptHashLib
             switch (inputData)
             {
                 case string hexString:
-                    return Enumerable.Range(0, hexString.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(hexString.Substring(x, 2), 16)).ToArray();
+                    return Enumerable.Range(0, hexString.Length - 1).Where(x => x % 2 == 0).Select(x => Convert.ToByte(hexString.Substring(x, 2), 16)).ToArray();
                 case byte[] bytes:
                     return bytes;
+                case object[] objects:
+                    return objects.Select(o => (byte)o).ToArray();
                 case PerceptHash perceptHash1:
                     return perceptHash1.hash;
                 case PSObject psObject:
