@@ -6,6 +6,11 @@ on:
       - main
     tags:
       - v*.*.*
+    paths-ignore:
+      - docs/
+      - mkdocs.yml
+      - requirements.txt
+      - README.md
   pull_request:
     branches:
       - main

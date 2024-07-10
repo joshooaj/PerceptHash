@@ -1,9 +1,9 @@
+[![CI](https://github.com/joshooaj/PerceptHash/actions/workflows/CI.yaml/badge.svg)](https://github.com/joshooaj/PerceptHash/actions/workflows/CI.yaml)
+
 <figure markdown="span">
   ![Coastline Bluff](assets/images/hero.jpg){ width="600" }
   <figcaption></figcaption>
 </figure>
-
-[![CI](https://github.com/joshooaj/PerceptHash/actions/workflows/CI.yaml/badge.svg)](https://github.com/joshooaj/PerceptHash/actions/workflows/CI.yaml)
 
 # Compare images with PerceptHash
 
