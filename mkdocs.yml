@@ -78,6 +78,6 @@ extra:
       name: joshooaj on GitHub
 
 nav:
-  - Home: README.md
+  - Home: index.md
   - Commands:
     - ... | flat | commands/en-US/*.md
