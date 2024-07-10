@@ -1,2 +1,0 @@
-"Markdown.MAML.resources, Version=1.0.0.0, Culture=en-US, PublicKeyToken=null","Markdown.MAML, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","/root/.local/share/powershell/Modules/joshooaj.platyPS/0.15.12/Markdown.MAML.dll"
-"Markdown.MAML.resources, Version=1.0.0.0, Culture=en, PublicKeyToken=null","Markdown.MAML, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","/root/.local/share/powershell/Modules/joshooaj.platyPS/0.15.12/Markdown.MAML.dll"
