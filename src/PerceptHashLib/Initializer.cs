@@ -18,7 +18,11 @@ namespace PerceptHashLib
         {
             var thisAssembly = this.GetType().Assembly.Location;
             _binFolder = new FileInfo(thisAssembly).DirectoryName ?? throw new DirectoryNotFoundException($"Could not find the parent directory of {thisAssembly}.");
-            SetDllDirectory(_binFolder);
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            {
+                SetDllDirectory(_binFolder);
+            }
+
             AppDomain.CurrentDomain.AssemblyResolve += RedirectToLoadedAssemblies;
         }
 
