@@ -36,7 +36,6 @@
         }
     },
     "remoteUser": "vscode",
-	"postCreateCommand": "sudo chsh vscode -s \"$(which pwsh)\";",
+    "postCreateCommand": "sudo chsh vscode -s \"$(which pwsh)\";",
     "postStartCommand": "pwsh -c './build.ps1 -Task Init -Bootstrap'"
 }
-
