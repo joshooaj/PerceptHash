@@ -25,7 +25,8 @@ jobs:
 
     - name: Test
       shell: pwsh
-      run: ./build.ps1 -Task Test -Bootstrap
+      run: ./build.ps1 -Task TestModule -Bootstrap -SkipIsolation -ErrorAction Stop
+
   publish:
     if: startsWith(github.ref, 'refs/tags/v')
     name: Publish module
@@ -41,7 +42,8 @@ jobs:
             PSGALLERY_API_KEY: ${{ secrets.PSGALLERY_API_KEY }}
         shell: pwsh
         run: |
-          ./build.ps1 -Task Publish -Bootstrap -SkipIsolation -ErrorAction Stop
+          ./build.ps1 -Task Default, Publish -Bootstrap -SkipIsolation -ErrorAction Stop
+          # Zip published module for upload as release draft on GH
           Get-ChildItem $env:BHBuildOutput | Compress-Archive -DestinationPath "$env:BHProjectName.zip"
           "ModuleZip=$env:BHProjectName.zip" >> $env:GITHUB_OUTPUT
 

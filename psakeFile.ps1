@@ -13,7 +13,11 @@ properties {
     }
 }
 
-task Default -depends Compile, UpdateVersion, StageLibrary, Test
+task Default -depends StageLibrary, Build
+
+task TestModule -depends Default, Test
+
+task Build -FromModule joshooaj.PowerShellBuild -minimumVersion '0.6.2'
 
 task Test -FromModule joshooaj.PowerShellBuild -minimumVersion '0.6.2'
 
@@ -48,7 +52,7 @@ task UpdateVersion {
     $script:PSBPreference.General.ModuleVersion = (dotnet nbgv get-version -f json | ConvertFrom-Json).SimpleVersion
 }
 
-task StageLibrary {
+task StageLibrary -depends UpdateVersion, Compile {
     $sdkSrc = Join-Path $PSBPreference.Build.OutDir '\lib\PerceptHashLib'
     $sdkDst = Join-Path $PSBPreference.General.SrcRootDir 'bin'
     $null = New-Item -Path $sdkDst -ItemType Directory -Force
