@@ -29,4 +29,4 @@ jobs:
 
       - name: MkDocs GH-Deploy
         shell: pwsh
-        run: .\build.ps1 -Bootstrap -Task PublishDocs
+        run: .\build.ps1 -Bootstrap -Task PublishDocs -SkipIsolation
