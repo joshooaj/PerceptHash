@@ -3,6 +3,8 @@
   <figcaption></figcaption>
 </figure>
 
+[![CI](https://github.com/joshooaj/PerceptHash/actions/workflows/CI.yaml/badge.svg)](https://github.com/joshooaj/PerceptHash/actions/workflows/CI.yaml)
+
 # Compare images with PerceptHash
 
 Using the PerceptHash module on Windows, linux, or macOS, you can generate
